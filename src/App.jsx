@@ -32,7 +32,7 @@ function App() {
   async function resolveENSorAddress(input) {
     try {
       const provider = new ethers.providers.JsonRpcProvider(
-        'https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID' // Replace with your Infura or Alchemy endpoint
+        '' // Replace with your Infura or Alchemy endpoint
       );
 
       // Check if input is an ENS domain (ends with .eth)
@@ -71,16 +71,16 @@ function App() {
 
   async function getNFTsForOwner() {
     setLoading(true);
-    setError(''); // Clear previous errors
-    setResults({ ownedNfts: [] }); // Clear previous results
-    setTokenDataObjects([]); // Clear previous token data objects
+    setError(''); 
+    setResults({ ownedNfts: [] });
+    setTokenDataObjects([]);
 
     try {
       const resolved = await resolveENSorAddress(userAddress);
       setResolvedAddress(resolved);
 
       const config = {
-        apiKey: 'Xq23Kn_d8n4PLXmBVePyb1cc4-H6J-yX',
+        apiKey: '', //Replace with your Infura or Alchemy API
         network: Network.ETH_MAINNET,
       };
 
@@ -92,7 +92,7 @@ function App() {
 
       for (let i = 0; i < data.ownedNfts.length; i++) {
         const tokenData = async () => {
-          await delay(200); // Delay each API call by 200ms to avoid rate limits
+          await delay(200); 
           return alchemy.nft.getNftMetadata(
             data.ownedNfts[i]?.contract?.address,
             data.ownedNfts[i]?.tokenId
